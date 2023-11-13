@@ -38,7 +38,7 @@ export default function Login() {
             navigate("/");
           } else {
             message.error(response.data.message);
-            // console.log(response.data.message);
+            console.log(response.data.message);
           }
         } catch (error) {
           setLoading(false);
@@ -103,7 +103,7 @@ export default function Login() {
             <div
               className="forgot-password"
               sx={{ marginTop: "10px" }}
-              onClick={() => navigate("/forgot-password/email-verify")}
+              onClick={() => navigate("/emailVerify")}
             >
               Forgot Password
             </div>

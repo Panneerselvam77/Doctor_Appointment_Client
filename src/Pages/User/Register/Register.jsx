@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
-import { message } from "antd";
+import toast from "react-hot-toast";
 
 // Validation Schema for Inputs
 const loginValidationSchema = yup.object({
@@ -23,21 +23,21 @@ export default function Register() {
       initialValues: { name: "", email: "", password: "" },
       validationSchema: loginValidationSchema,
       onSubmit: async (values) => {
-        console.log(values);
+        // console.log(values);
         try {
           const response = await axios.post(
             `http://localhost:8070/api/user/register`,
             values
           );
-          // console.log(response.data);
-          if (response.data === true) {
-            // localStorage.setItem("token");
-            message.success("LoggedIn Successfull");
-            console.log(response.data);
+          if (response.data) {
+            toast.success(response.data.message);
+            // console.log(response.data);
             navigate("/login");
+          } else {
+            toast.error(response.data.message);
           }
         } catch (error) {
-          message.error(error.response.data.message);
+          toast.error(error.response.data.message);
           console.log(error);
         }
       },
@@ -105,6 +105,12 @@ export default function Register() {
             </Button>
 
             <div className="alt-login">
+              <div
+                className="forgot-password"
+                onClick={() => navigate("/forgot-password/email-verify")}
+              >
+                Forgot Password
+              </div>
               <div className="Sign-up" onClick={() => navigate("/login")}>
                 Sign-in
               </div>

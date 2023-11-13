@@ -22,8 +22,8 @@ p {
   font-weight: 400;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .row1 {
-    overflow: hidden;
+    overflow-x: scroll;
   }
 }
