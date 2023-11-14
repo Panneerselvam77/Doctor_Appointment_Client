@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./login.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -15,7 +15,7 @@ const loginValidationSchema = yup.object({
 });
 
 export default function Login() {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const { values, handleBlur, handleSubmit, touched, errors, handleChange } =
@@ -24,24 +24,21 @@ export default function Login() {
       validationSchema: loginValidationSchema,
       onSubmit: async (values) => {
         try {
-          setLoading(true);
           const response = await axios.post(
             `http://localhost:8070/api/user/login`,
             values
           );
-          setLoading(false);
 
           if (response.data) {
             message.success("Signed In Successfull");
+            localStorage.setItem("token", response.data.token);
             console.log(response.data);
-
-            navigate("/");
+            navigate("/frontpage");
           } else {
             message.error(response.data.message);
             console.log(response.data.message);
           }
         } catch (error) {
-          setLoading(false);
           message.error(error.response.data.message);
           console.log(error);
         }
