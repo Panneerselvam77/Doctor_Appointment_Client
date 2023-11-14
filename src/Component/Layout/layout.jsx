@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./layout.css";
 import { Link, useLocation } from "react-router-dom";
+import { Badge } from "antd";
 
 export default function Layout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -40,7 +41,7 @@ export default function Layout({ children }) {
         {/* Sidebar */}
         <div className="sidebar">
           <div className="sidebar-header">
-            <h1>MHP</h1>
+            <h1 className="logo-title">MHP</h1>
           </div>
           <div className="menu">
             {userMenu.map((menu) => {
@@ -73,6 +74,9 @@ export default function Layout({ children }) {
                 onClick={() => setCollapsed(true)}
               ></i>
             )}
+            <div className="d-flex">
+              <i className="ri-notification-3-line header-action-icon"></i>
+            </div>
           </div>
           {/* Body */}
           <div className="body">{children}</div>
