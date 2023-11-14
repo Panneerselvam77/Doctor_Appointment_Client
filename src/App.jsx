@@ -7,9 +7,18 @@ import Home from "./Pages/Home/Home.jsx";
 import EmailVerify from "./Pages/User/Emailverify/EmailVerify.jsx";
 import FrontPage from "./Pages/Front_Page/FrontPage.jsx";
 
+import { BrowserRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 function App() {
+  const { loading } = useSelector((state) => state.alert);
   return (
-    <div className="App">
+    <BrowserRouter>
+      {loading && (
+        <div className="spinner-parent">
+          <div class="spinner-border text-primary" role="status"></div>
+        </div>
+      )}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -17,7 +26,7 @@ function App() {
         <Route path="/emailVerify" element={<EmailVerify />} />
         <Route path="/frontpage" element={<FrontPage />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 

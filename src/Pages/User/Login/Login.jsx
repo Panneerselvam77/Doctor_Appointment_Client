@@ -7,6 +7,8 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { message } from "antd";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../../../Redux/feature/alertSlice";
 
 //  Login Credential Validation Schema
 const loginValidationSchema = yup.object({
@@ -15,20 +17,20 @@ const loginValidationSchema = yup.object({
 });
 
 export default function Login() {
-  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const { values, handleBlur, handleSubmit, touched, errors, handleChange } =
     useFormik({
       initialValues: { email: "", password: "" },
       validationSchema: loginValidationSchema,
       onSubmit: async (values) => {
         try {
+          dispatch(showLoading());
           const response = await axios.post(
             `http://localhost:8070/api/user/login`,
             values
           );
-
+          dispatch(hideLoading());
           if (response.data) {
             message.success("Signed In Successfull");
             localStorage.setItem("token", response.data.token);
@@ -39,6 +41,7 @@ export default function Login() {
             console.log(response.data.message);
           }
         } catch (error) {
+          dispatch(hideLoading());
           message.error(error.response.data.message);
           console.log(error);
         }

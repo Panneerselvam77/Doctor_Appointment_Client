@@ -7,6 +7,8 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { hideLoading, loading } from "../../../Redux/feature/alertSlice";
 
 // Validation Schema for Inputs
 const loginValidationSchema = yup.object({
@@ -17,6 +19,7 @@ const loginValidationSchema = yup.object({
 
 export default function Register() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { values, handleBlur, handleSubmit, touched, errors, handleChange } =
     useFormik({
@@ -25,10 +28,12 @@ export default function Register() {
       onSubmit: async (values) => {
         // console.log(values);
         try {
+          dispatch(loading());
           const response = await axios.post(
             `http://localhost:8070/api/user/register`,
             values
           );
+          dispatch(hideLoading());
           if (response.data) {
             toast.success(response.data.message);
             // console.log(response.data);
@@ -37,6 +42,7 @@ export default function Register() {
             toast.error(response.data.message);
           }
         } catch (error) {
+          dispatch(hideLoading());
           toast.error(error.response.data.message);
           console.log(error);
         }
