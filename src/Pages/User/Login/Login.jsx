@@ -35,7 +35,7 @@ export default function Login() {
             message.success("Signed In Successfull");
             localStorage.setItem("token", response.data.token);
             console.log(response.data);
-            navigate("/frontpage");
+            navigate("/home");
           } else {
             message.error(response.data.message);
             console.log(response.data.message);

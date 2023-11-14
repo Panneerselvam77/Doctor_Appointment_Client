@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { hideLoading, loading } from "../../../Redux/feature/alertSlice";
+import { message } from "antd";
 
 // Validation Schema for Inputs
 const loginValidationSchema = yup.object({
@@ -35,15 +35,15 @@ export default function Register() {
           );
           dispatch(hideLoading());
           if (response.data) {
-            toast.success(response.data.message);
+            message.success(response.data.message);
             // console.log(response.data);
             navigate("/login");
           } else {
-            toast.error(response.data.message);
+            message.error(response.data.message);
           }
         } catch (error) {
           dispatch(hideLoading());
-          toast.error(error.response.data.message);
+          message.error(error.response.data.message);
           console.log(error);
         }
       },
