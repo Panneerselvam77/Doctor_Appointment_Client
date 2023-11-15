@@ -9,15 +9,16 @@ import { useSelector } from "react-redux";
 import WelcomePage from "./Pages/WelcomePage/WelcomePage.jsx";
 import ProductedRoute from "./Component/ProductedRoute/ProductedRoute.jsx";
 import PublicRoute from "./Component/ProductedRoute/PublicRoute.jsx";
+import ApplyDoctor from "./Pages/Doctor/ApplyDoctor/ApplyDoctor.jsx";
 
 function App() {
   /* Error => state.alerts or state.alert */
-  const { loading } = useSelector((state) => state.alert);
+  const { loading } = useSelector((state) => state.alerts);
   return (
     <div className="App">
       {loading && (
         <div className="spinner-parent">
-          <div class="spinner-border text-primary" role="status"></div>
+          <div className="spinner-border text-primary" role="status"></div>
         </div>
       )}
       <Routes>
@@ -44,6 +45,14 @@ function App() {
           element={
             <ProductedRoute>
               <Home />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          path="/apply-doctor"
+          element={
+            <ProductedRoute>
+              <ApplyDoctor />
             </ProductedRoute>
           }
         />

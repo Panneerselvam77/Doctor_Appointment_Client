@@ -4,7 +4,7 @@ import { alertSlice } from "../feature/alertSlice.jsx";
 import { userSlice } from "../feature/userSlice.jsx";
 
 const rootReducer = combineReducers({
-  alert: alertSlice.reducer,
+  alerts: alertSlice.reducer,
   user: userSlice.reducer,
 });
 

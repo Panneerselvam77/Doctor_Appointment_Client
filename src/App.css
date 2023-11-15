@@ -16,3 +16,24 @@
 /* .remix-icons {
   font-size: 30px;
 } */
+.page-title {
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: bold;
+  /* text-align: left; */
+}
+.card-title {
+  font-size: 22px !important;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: left;
+}
+.ant-picker {
+  height: 40px;
+  display: flex;
+  justify-content: left;
+}
+
+.primary Button {
+  width: max-content;
+}

@@ -6,6 +6,7 @@ import Layout from "../../Component/Layout/layout";
 export default function Home() {
   const getData = async () => {
     try {
+      // eslint-disable-next-line
       const response = await axios.post(
         "http://localhost:8070/api/user/get-user-info-by-id",
         {},
@@ -15,7 +16,7 @@ export default function Home() {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +27,7 @@ export default function Home() {
   }, []);
   return (
     <Layout>
-      <h1>Home Page</h1>
+      <h1 className="page-title">Home Page</h1>
     </Layout>
   );
 }

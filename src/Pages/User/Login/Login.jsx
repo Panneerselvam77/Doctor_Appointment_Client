@@ -34,16 +34,16 @@ export default function Login() {
           if (response.data) {
             message.success("Signed In Successfull");
             localStorage.setItem("token", response.data.token);
-            console.log(response.data);
+            // console.log(response.data);
             navigate("/home");
           } else {
             message.error(response.data.message);
-            console.log(response.data.message);
+            // console.log(response.data.message);
           }
         } catch (error) {
           dispatch(hideLoading());
           message.error(error.response.data.message);
-          console.log(error);
+          // console.log(error);
         }
       },
     });

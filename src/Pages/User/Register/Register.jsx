@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { hideLoading, loading } from "../../../Redux/feature/alertSlice";
+import { hideLoading, showLoading } from "../../../Redux/feature/alertSlice";
 import { message } from "antd";
 
 // Validation Schema for Inputs
@@ -28,7 +28,7 @@ export default function Register() {
       onSubmit: async (values) => {
         // console.log(values);
         try {
-          dispatch(loading());
+          dispatch(showLoading());
           const response = await axios.post(
             `http://localhost:8070/api/user/register`,
             values
