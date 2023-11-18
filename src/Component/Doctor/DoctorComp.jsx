@@ -11,6 +11,7 @@ function DoctorComp({ doctor }) {
       <h1 className="card-title">
         {doctor.firstName} {doctor.lastName}
       </h1>
+      <p>{doctor.specialization}</p>
       <hr />
       <p>
         <b>Phone Number : </b>

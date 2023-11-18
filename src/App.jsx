@@ -14,6 +14,9 @@ import Notification from "./Pages/Notification/Notification.jsx";
 import UserList from "./Pages/Admin/UserList.jsx";
 import DoctorList from "./Pages/Admin/DoctorList.jsx";
 import DoctorProfile from "./Pages/Doctor/DoctorProfile/DoctorProfile.jsx";
+import BookAppointment from "./Pages/BookAppointment/BookAppointment.jsx";
+import Appointment from "./Pages/Appointment/Appointment.jsx";
+import DoctorAppointments from "./Pages/Doctor/DoctorAppointment/DoctorAppointment.jsx";
 
 function App() {
   /* Error => state.alerts or state.alert */
@@ -90,6 +93,31 @@ function App() {
           element={
             <ProductedRoute>
               <DoctorProfile />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          path="/book-appointment/:doctorId"
+          element={
+            <ProductedRoute>
+              <BookAppointment />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          /*  */
+          path="/appoinments"
+          element={
+            <ProductedRoute>
+              <Appointment />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          path="/doctor/appointments"
+          element={
+            <ProductedRoute>
+              <DoctorAppointments />
             </ProductedRoute>
           }
         />

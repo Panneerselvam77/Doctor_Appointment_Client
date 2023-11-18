@@ -3,17 +3,26 @@ import Layout from "../../Component/Layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice";
+import axios from "axios";
+import { Button, Col, DatePicker, Row, TimePicker, message } from "antd";
+import moment from "moment";
+
+const format = "HH:mm";
 
 export default function BookAppointment() {
   const [isAvailable, setIsAvailable] = useState(false);
   const navigate = useNavigate();
   const [date, setDate] = useState();
-  const [time, setTime] = useState();
+  const [time, setTime] = useState("");
   const { user } = useSelector((state) => state.user);
-  const [doctor, setDoctor] = useState(null);
+  const [doctor, setDoctor] = useState();
   const params = useParams();
   const dispatch = useDispatch();
+  console.log({
+    Time: time,
+  });
 
+  /* Get Doctor Data */
   const getDoctorData = async () => {
     try {
       dispatch(showLoading());
@@ -38,6 +47,7 @@ export default function BookAppointment() {
       dispatch(hideLoading());
     }
   };
+  /* Checking Time Availability  */
   const checkAvailability = async () => {
     try {
       dispatch(showLoading());
@@ -56,16 +66,20 @@ export default function BookAppointment() {
       );
       dispatch(hideLoading());
       if (response.data.success) {
-        toast.success(response.data.message);
+        message.success(response.data.message);
         setIsAvailable(true);
       } else {
-        toast.error(response.data.message);
+        console.log(response.data);
+        message.error(response.data.message);
       }
     } catch (error) {
-      toast.error("Error booking appointment");
+      console.log(error);
+      message.error("Error booking appointment");
       dispatch(hideLoading());
     }
   };
+
+  /* Booking */
   const bookNow = async () => {
     setIsAvailable(false);
     try {
@@ -89,12 +103,13 @@ export default function BookAppointment() {
 
       dispatch(hideLoading());
       if (response.data.success) {
-        toast.success(response.data.message);
-        navigate("/appointments");
+        message.success(response.data.message);
+        navigate("/appoinments");
       }
     } catch (error) {
-      toast.error("Error booking appointment");
+      message.error("Error booking appointment");
       dispatch(hideLoading());
+      console.log(error);
     }
   };
 
@@ -109,6 +124,7 @@ export default function BookAppointment() {
           <h1 className="page-title">
             {doctor.firstName} {doctor.lastName}
           </h1>
+          <h6>{doctor.specialization}</h6>
           <hr />
           <Row gutter={20} className="mt-5" align="middle">
             <Col span={8} sm={24} xs={24} lg={8}>
@@ -133,7 +149,7 @@ export default function BookAppointment() {
               </p>
               <p>
                 <b>Fee per Visit : </b>
-                {doctor.feePerCunsultation}
+                {doctor.feePerConsultation}
               </p>
               <p>
                 <b>Website : </b>
@@ -149,10 +165,12 @@ export default function BookAppointment() {
                 />
                 <TimePicker
                   format="HH:mm"
+                  // value={time}
                   className="mt-3"
-                  onChange={(value) => {
+                  onChange={(e) => {
+                    // console.log(value, dateString);
                     setIsAvailable(false);
-                    setTime(moment(value).format("HH:mm"));
+                    setTime(moment(e).format("HH:mm"));
                   }}
                 />
                 {!isAvailable && (
