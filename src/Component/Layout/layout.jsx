@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./layout.css";
-import { Link, useLocation } from "react-router-dom";
-// import { Badge } from "antd";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Badge } from "antd";
 import { useSelector } from "react-redux";
 
 export default function Layout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   // const isUser = user._doc;
   const location = useLocation();
 
@@ -41,12 +42,12 @@ export default function Layout({ children }) {
     },
     {
       name: "Users",
-      path: "/users",
+      path: "/admin/userslist",
       icon: "ri-user-line",
     },
     {
       name: "Doctors",
-      path: "/doctors",
+      path: "/admin/doctorslist",
       icon: "ri-user-star-line",
     },
     {
@@ -108,9 +109,14 @@ export default function Layout({ children }) {
                 onClick={() => setCollapsed(true)}
               ></i>
             )}
-            <div className="d-flex align-items-center mr-5">
-              <i className="ri-notification-3-line header-action-icon mr-3"></i>
-              <Link className="anchor" to={"/profile"}>
+            <div className="d-flex align-items-center mr-3">
+              <Badge count={user?.unseenNotification.length}>
+                <i
+                  className="ri-notification-3-line header-action-icon mr-1"
+                  onClick={() => navigate("/notification")}
+                ></i>
+              </Badge>
+              <Link className="anchor mx-4" to={"/profile"}>
                 {user?.name}
               </Link>
             </div>

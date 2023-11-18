@@ -10,6 +10,9 @@ import WelcomePage from "./Pages/WelcomePage/WelcomePage.jsx";
 import ProductedRoute from "./Component/ProductedRoute/ProductedRoute.jsx";
 import PublicRoute from "./Component/ProductedRoute/PublicRoute.jsx";
 import ApplyDoctor from "./Pages/Doctor/ApplyDoctor/ApplyDoctor.jsx";
+import Notification from "./Pages/Notification/Notification.jsx";
+import UserList from "./Pages/Admin/UserList.jsx";
+import DoctorList from "./Pages/Admin/DoctorList.jsx";
 
 function App() {
   /* Error => state.alerts or state.alert */
@@ -53,6 +56,31 @@ function App() {
           element={
             <ProductedRoute>
               <ApplyDoctor />
+            </ProductedRoute>
+          }
+        />
+
+        <Route
+          path="/notification"
+          element={
+            <ProductedRoute>
+              <Notification />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          path="/admin/userslist"
+          element={
+            <ProductedRoute>
+              <UserList />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          path="/admin/doctorslist"
+          element={
+            <ProductedRoute>
+              <DoctorList />
             </ProductedRoute>
           }
         />
