@@ -97,7 +97,7 @@ function DoctorForm({ onFinish, initivalValues }) {
           <Form.Item
             required
             label="Fee Per Cunsultation"
-            name="feePerCunsultation"
+            name="feePerConsultation"
             rules={[{ required: true }]}
           >
             <Input placeholder="Fee Per Cunsultation" type="number" />

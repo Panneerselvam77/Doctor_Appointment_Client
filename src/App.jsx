@@ -6,13 +6,14 @@ import Register from "./Pages/User/Register/Register.jsx";
 import EmailVerify from "./Pages/User/Emailverify/EmailVerify.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import { useSelector } from "react-redux";
-import WelcomePage from "./Pages/WelcomePage/WelcomePage.jsx";
+// import WelcomePage from "./Pages/WelcomePage/WelcomePage.jsx";
 import ProductedRoute from "./Component/ProductedRoute/ProductedRoute.jsx";
 import PublicRoute from "./Component/ProductedRoute/PublicRoute.jsx";
 import ApplyDoctor from "./Pages/Doctor/ApplyDoctor/ApplyDoctor.jsx";
 import Notification from "./Pages/Notification/Notification.jsx";
 import UserList from "./Pages/Admin/UserList.jsx";
 import DoctorList from "./Pages/Admin/DoctorList.jsx";
+import DoctorProfile from "./Pages/Doctor/DoctorProfile/DoctorProfile.jsx";
 
 function App() {
   /* Error => state.alerts or state.alert */
@@ -25,7 +26,7 @@ function App() {
         </div>
       )}
       <Routes>
-        <Route exact path="/" element={<WelcomePage />} />
+        <Route exact path="/" element={<Home />} />
         <Route
           path="/login"
           element={
@@ -81,6 +82,14 @@ function App() {
           element={
             <ProductedRoute>
               <DoctorList />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          path="/doctor/profile/:doctorId"
+          element={
+            <ProductedRoute>
+              <DoctorProfile />
             </ProductedRoute>
           }
         />

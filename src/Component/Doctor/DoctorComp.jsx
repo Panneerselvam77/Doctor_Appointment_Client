@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Doctor({ doctor }) {
+function DoctorComp({ doctor }) {
   const navigate = useNavigate();
   return (
     <div
@@ -22,7 +22,7 @@ function Doctor({ doctor }) {
       </p>
       <p>
         <b>Fee per Visit : </b>
-        {doctor.feePerCunsultation}
+        {doctor.feePerConsultation}
       </p>
       <p>
         <b>Timings : </b>
@@ -32,4 +32,4 @@ function Doctor({ doctor }) {
   );
 }
 
-export default Doctor;
+export default DoctorComp;
