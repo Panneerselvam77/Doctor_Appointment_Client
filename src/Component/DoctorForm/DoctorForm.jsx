@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Col, Form, Input, Row, TimePicker } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
+import { TimePicker } from "antd";
 import moment from "moment";
 
 function DoctorForm({ onFinish, initivalValues }) {
@@ -11,8 +12,8 @@ function DoctorForm({ onFinish, initivalValues }) {
         ...initivalValues,
         ...(initivalValues && {
           timings: [
-            moment(initivalValues?.timings[0], "HH:mm"),
-            moment(initivalValues?.timings[1], "HH:mm"),
+            moment(initivalValues?.timings[0], "hh:mm"),
+            moment(initivalValues?.timings[1], "hh:mm"),
           ],
         }),
       }}
@@ -110,7 +111,12 @@ function DoctorForm({ onFinish, initivalValues }) {
             name="timings"
             rules={[{ required: true }]}
           >
-            <TimePicker.RangePicker format="HH:mm" />
+            {/* Time Picker */}
+            <TimePicker.RangePicker
+              use24Hours
+              format="hh:mm"
+              // onChange={onChange}
+            />
           </Form.Item>
         </Col>
       </Row>

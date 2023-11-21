@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice.jsx";
 import axios from "axios";
 import moment from "moment";
-import { Table, message } from "antd";
+import { Table } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export default function DoctorAppointment() {

@@ -1,7 +1,7 @@
 import React from "react";
 import "./register.css";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useFormik } from "formik";
@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../../Redux/feature/alertSlice";
 import { message } from "antd";
+import { TextField } from "@mui/material";
 
 // Validation Schema for Inputs
 const loginValidationSchema = yup.object({

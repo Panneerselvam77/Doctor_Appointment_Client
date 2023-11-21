@@ -17,6 +17,7 @@ import DoctorProfile from "./Pages/Doctor/DoctorProfile/DoctorProfile.jsx";
 import BookAppointment from "./Pages/BookAppointment/BookAppointment.jsx";
 import Appointment from "./Pages/Appointment/Appointment.jsx";
 import DoctorAppointments from "./Pages/Doctor/DoctorAppointment/DoctorAppointment.jsx";
+import LayoutCheck from "./Pages/LayoutCheck/LayoutCheck.jsx";
 
 function App() {
   /* Error => state.alerts or state.alert */
@@ -118,6 +119,14 @@ function App() {
           element={
             <ProductedRoute>
               <DoctorAppointments />
+            </ProductedRoute>
+          }
+        />
+        <Route
+          path="/layoutcheck"
+          element={
+            <ProductedRoute>
+              <LayoutCheck />
             </ProductedRoute>
           }
         />

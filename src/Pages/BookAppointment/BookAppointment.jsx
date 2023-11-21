@@ -7,8 +7,6 @@ import axios from "axios";
 import { Button, Col, DatePicker, Row, TimePicker, message } from "antd";
 import moment from "moment";
 
-const format = "HH:mm";
-
 export default function BookAppointment() {
   const [isAvailable, setIsAvailable] = useState(false);
   const navigate = useNavigate();
@@ -18,9 +16,9 @@ export default function BookAppointment() {
   const [doctor, setDoctor] = useState();
   const params = useParams();
   const dispatch = useDispatch();
-  console.log({
-    Time: time,
-  });
+  // console.log({
+  //   Time: time,
+  // });
 
   /* Get Doctor Data */
   const getDoctorData = async () => {
@@ -121,6 +119,7 @@ export default function BookAppointment() {
     <Layout>
       {doctor && (
         <div>
+          {/* Doctor Name */}
           <h1 className="page-title">
             {doctor.firstName} {doctor.lastName}
           </h1>
@@ -163,14 +162,14 @@ export default function BookAppointment() {
                     setIsAvailable(false);
                   }}
                 />
-                <TimePicker
-                  format="HH:mm"
-                  // value={time}
+                <TimePicker.RangePicker
+                  use12Hours
+                  format="hh:mm a"
                   className="mt-3"
-                  onChange={(e) => {
-                    // console.log(value, dateString);
+                  onChange={(value) => {
                     setIsAvailable(false);
-                    setTime(moment(e).format("HH:mm"));
+                    // setTime(moment(value).format("HH:mm"));
+                    setTime([value[0], value[1]]);
                   }}
                 />
                 {!isAvailable && (
