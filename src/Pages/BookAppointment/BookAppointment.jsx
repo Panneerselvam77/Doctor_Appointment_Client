@@ -8,6 +8,7 @@ import { Button, Col, DatePicker, Row, TimePicker, message } from "antd";
 import moment from "moment";
 
 export default function BookAppointment() {
+  // eslint-disable-next-line
   const [isAvailable, setIsAvailable] = useState(false);
   const navigate = useNavigate();
   const [date, setDate] = useState();
