@@ -1,23 +1,9 @@
 import React from "react";
 import { Button, Col, Form, Input, Row } from "antd";
-import { TimePicker } from "antd";
-import moment from "moment";
 
-function DoctorForm({ onFinish, initivalValues }) {
+function DoctorForm({ onFinish }) {
   return (
-    <Form
-      layout="vertical"
-      onFinish={onFinish}
-      initialValues={{
-        ...initivalValues,
-        ...(initivalValues && {
-          timings: [
-            moment(initivalValues?.timings[0], "hh:mm"),
-            moment(initivalValues?.timings[1], "hh:mm"),
-          ],
-        }),
-      }}
-    >
+    <Form layout="vertical" onFinish={onFinish}>
       <h1 className="card-title mt-3">Personal Information</h1>
       <Row gutter={20}>
         <Col span={8} xs={24} sm={24} lg={8}>
@@ -107,16 +93,21 @@ function DoctorForm({ onFinish, initivalValues }) {
         <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item
             required
-            label="Timings"
-            name="timings"
+            label="From Time"
+            name="fromTime"
             rules={[{ required: true }]}
           >
-            {/* Time Picker */}
-            <TimePicker.RangePicker
-              use24Hours
-              format="hh:mm"
-              // onChange={onChange}
-            />
+            <Input placeholder="From time" type="number" />
+          </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={24} lg={8}>
+          <Form.Item
+            required
+            label="To Time"
+            name="toTime"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="To time" type="number" />
           </Form.Item>
         </Col>
       </Row>

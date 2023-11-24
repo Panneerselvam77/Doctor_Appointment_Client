@@ -39,10 +39,12 @@ export default function Home() {
     <Layout>
       <h1 className="page-title">Home Page</h1>
       <Row gutter={20}>
-        {doctors.map((doctor) => (
-          <Col span={8} xs={24} sm={24} lg={8}>
-            <DoctorComp doctor={doctor} />
-          </Col>
+        {doctors.map((doctor, index) => (
+          <div key={index} className="doclist pt-2">
+            <Col span={8} xs={24} sm={24} lg={8}>
+              <DoctorComp doctor={doctor} />
+            </Col>
+          </div>
         ))}
       </Row>
     </Layout>

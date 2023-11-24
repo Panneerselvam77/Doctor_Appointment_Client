@@ -65,6 +65,9 @@
   box-shadow: 0 0 2px rgb(189, 188, 188);
   border-radius: 0 !important;
   text-align: left;
+  width: 250px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
 }
 .primary-button {
   background-color: #005555 !important;

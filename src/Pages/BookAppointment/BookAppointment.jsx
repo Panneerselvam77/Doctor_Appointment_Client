@@ -16,9 +16,11 @@ export default function BookAppointment() {
   const [doctor, setDoctor] = useState();
   const params = useParams();
   const dispatch = useDispatch();
-  // console.log({
-  //   Time: time,
-  // });
+  console.log(time);
+  const onChange = (time, timeString) => {
+    setIsAvailable(false);
+    setTime(timeString);
+  };
 
   /* Get Doctor Data */
   const getDoctorData = async () => {
@@ -35,7 +37,6 @@ export default function BookAppointment() {
           },
         }
       );
-
       dispatch(hideLoading());
       if (response.data.success) {
         setDoctor(response.data.data);
@@ -46,7 +47,7 @@ export default function BookAppointment() {
     }
   };
   /* Checking Time Availability  */
-  const checkAvailability = async () => {
+  /* const checkAvailability = async () => {
     try {
       dispatch(showLoading());
       const response = await axios.post(
@@ -75,7 +76,7 @@ export default function BookAppointment() {
       message.error("Error booking appointment");
       dispatch(hideLoading());
     }
-  };
+  }; */
 
   /* Booking */
   const bookNow = async () => {
@@ -98,7 +99,6 @@ export default function BookAppointment() {
           },
         }
       );
-
       dispatch(hideLoading());
       if (response.data.success) {
         message.success(response.data.message);
@@ -136,7 +136,7 @@ export default function BookAppointment() {
             </Col>
             <Col span={8} sm={24} xs={24} lg={8}>
               <h1 className="normal-text">
-                <b>Timings :</b> {doctor.timings[0]} - {doctor.timings[1]}
+                <b>Timings :</b> {doctor.fromTime}:00 AM - {doctor.toTime}:00PM
               </h1>
               <p>
                 <b>Phone Number : </b>
@@ -162,33 +162,19 @@ export default function BookAppointment() {
                     setIsAvailable(false);
                   }}
                 />
-                <TimePicker.RangePicker
+                <TimePicker
                   use12Hours
-                  format="hh:mm a"
+                  format="h:mm a"
                   className="mt-3"
-                  onChange={(value) => {
-                    setIsAvailable(false);
-                    // setTime(moment(value).format("HH:mm"));
-                    setTime([value[0], value[1]]);
-                  }}
+                  onChange={onChange}
                 />
-                {!isAvailable && (
-                  <Button
-                    className="primary-button mt-3 full-width-button"
-                    onClick={checkAvailability}
-                  >
-                    Check Availability
-                  </Button>
-                )}
 
-                {isAvailable && (
-                  <Button
-                    className="primary-button mt-3 full-width-button"
-                    onClick={bookNow}
-                  >
-                    Book Now
-                  </Button>
-                )}
+                <Button
+                  className="primary-button mt-3 full-width-button"
+                  onClick={bookNow}
+                >
+                  Book Now
+                </Button>
               </div>
             </Col>
           </Row>

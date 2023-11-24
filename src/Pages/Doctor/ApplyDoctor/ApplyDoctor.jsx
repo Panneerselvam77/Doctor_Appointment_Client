@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../../../Redux/feature/alertSlice";
 import DoctorForm from "../../../Component/DoctorForm/DoctorForm.jsx";
 import { message } from "antd";
-import moment from "moment";
 import axios from "axios";
 
 export default function ApplyDoctor() {
@@ -21,10 +20,6 @@ export default function ApplyDoctor() {
         {
           ...value,
           userId: user._id,
-          timings: [
-            moment(value.timings[0]).format("hh:mm"),
-            moment(value.timings[1]).format("hh:mm"),
-          ],
         },
         {
           headers: {
@@ -35,7 +30,7 @@ export default function ApplyDoctor() {
       dispatch(hideLoading());
       if (response.data.success) {
         message.success(response.data.message);
-        console.log(response.data.Newdoctor.timings);
+        console.log(response.data);
         // navigate("/home");
       } else {
         message.error(response.data.message);

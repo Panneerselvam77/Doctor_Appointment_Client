@@ -38,10 +38,6 @@ export default function DoctorAppointment() {
 
   const columns = [
     {
-      title: "Id",
-      dataIndex: "_id",
-    },
-    {
       title: "Doctor",
       dataIndex: "name",
       render: (text, record) => (
@@ -51,19 +47,26 @@ export default function DoctorAppointment() {
       ),
     },
     {
+      title: "specialist",
+      dataIndex: "specialization",
+      render: (text, record) => <span>{record.doctorInfo.specialization}</span>,
+    },
+    {
       title: "Phone",
       dataIndex: "phoneNumber",
       render: (text, record) => <span>{record.doctorInfo.phoneNumber}</span>,
     },
     {
-      title: "Date & Time",
+      title: "Date",
       dataIndex: "createdAt",
       render: (text, record) => (
-        <span>
-          {moment(record.date).format("DD-MM-YYYY")}{" "}
-          {moment(record.time).format("HH:mm")}
-        </span>
+        <span>{moment(record.date).format("DD-MM-YYYY")}</span>
       ),
+    },
+    {
+      title: "Time",
+      dataIndex: "createdAt",
+      render: (text, record) => <span>{record.time}</span>,
     },
     {
       title: "Status",

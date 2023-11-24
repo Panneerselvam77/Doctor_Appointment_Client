@@ -27,7 +27,7 @@ function DoctorComp({ doctor }) {
       </p>
       <p>
         <b>Timings : </b>
-        {doctor.timings[0]} - {doctor.timings[1]}
+        {doctor.fromTime}:00 AM - {doctor.toTime}:00 PM
       </p>
     </div>
   );
