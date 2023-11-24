@@ -62,6 +62,7 @@ function DoctorAppointments() {
     {
       title: "Id",
       dataIndex: "_id",
+      key: "_id",
     },
     {
       title: "Patient",
@@ -77,11 +78,13 @@ function DoctorAppointments() {
       title: "Date & Time",
       dataIndex: "createdAt",
       render: (text, record) => (
-        <span>
-          {moment(record.date).format("DD-MM-YYYY")}{" "}
-          {moment(record.time).format("HH:mm")}
-        </span>
+        <span>{moment(record.date).format("DD-MM-YYYY")}</span>
       ),
+    },
+    {
+      title: "Time",
+      dataIndex: "createdAt",
+      render: (text, record) => <span>{record.time}</span>,
     },
     {
       title: "Status",

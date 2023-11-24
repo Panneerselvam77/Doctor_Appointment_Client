@@ -45,6 +45,7 @@ export default function DoctorAppointment() {
           {record.doctorInfo.firstName} {record.doctorInfo.lastName}
         </span>
       ),
+      key: "name",
     },
     {
       title: "specialist",
