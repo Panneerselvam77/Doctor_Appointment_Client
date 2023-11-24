@@ -47,37 +47,6 @@ export default function BookAppointment() {
       dispatch(hideLoading());
     }
   };
-  /* Checking Time Availability  */
-  /* const checkAvailability = async () => {
-    try {
-      dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:8070/api/user/check-booking-avilability",
-        {
-          doctorId: params.doctorId,
-          date: date,
-          time: time,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      dispatch(hideLoading());
-      if (response.data.success) {
-        message.success(response.data.message);
-        setIsAvailable(true);
-      } else {
-        console.log(response.data);
-        message.error(response.data.message);
-      }
-    } catch (error) {
-      console.log(error);
-      message.error("Error booking appointment");
-      dispatch(hideLoading());
-    }
-  }; */
 
   /* Booking */
   const bookNow = async () => {
