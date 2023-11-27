@@ -28,11 +28,6 @@ export default function Layout({ children }) {
       path: "/apply-doctor",
       icon: "ri-hospital-line",
     },
-    /* {
-      name: "Profile",
-      path: "/profile",
-      icon: "ri-user-line",
-    }, */
   ];
 
   // Admin Menu
@@ -52,11 +47,6 @@ export default function Layout({ children }) {
       path: "/admin/doctorslist",
       icon: "ri-user-star-line",
     },
-    /* {
-      name: "Profile",
-      path: "/profile",
-      icon: "ri-user-line",
-    }, */
   ];
 
   /* Doctor Menu */
@@ -71,11 +61,6 @@ export default function Layout({ children }) {
       path: "/doctor/appointments",
       icon: "ri-file-list-line",
     },
-    /* {
-      name: "Profile",
-      path: `/doctor/profile/${user?._id}`,
-      icon: "ri-user-line",
-    }, */
   ];
 
   const menuToBeRendered = user?.isAdmin

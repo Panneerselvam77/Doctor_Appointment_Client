@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../Component/Layout/layout.jsx";
+// import Layout from "../../Component/Layout/layout.jsx";
 import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice.jsx";
 import axios from "axios";
 import moment from "moment";
 import { Table } from "antd";
 import { useNavigate } from "react-router-dom";
+import UserLayout from "../../Component/Layout/UserLayout.jsx";
 
 export default function DoctorAppointment() {
   const [appointments, setAppointmnets] = useState([]);
@@ -80,10 +81,15 @@ export default function DoctorAppointment() {
     // eslint-disable-next-line
   }, []);
   return (
-    <Layout>
-      <h1 className="page-title"> Doctor Appointments</h1>
-      <hr />
-      <Table columns={columns} dataSource={appointments} />
-    </Layout>
+    <UserLayout>
+      <div className="" style={{ width: "90%" }}>
+        <h1 className="page-title d-flex justify-content-center mt-3">
+          {" "}
+          Doctor Appointments
+        </h1>
+        <hr />
+        <Table columns={columns} dataSource={appointments} />
+      </div>
+    </UserLayout>
   );
 }

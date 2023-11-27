@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../Component/Layout/layout";
+// import Layout from "../../Component/Layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice";
 import axios from "axios";
 import { Button, Col, DatePicker, Row, TimePicker, message } from "antd";
 import moment from "moment";
+import UserLayout from "../../Component/Layout/UserLayout";
 
 export default function BookAppointment() {
   // eslint-disable-next-line
@@ -86,7 +87,7 @@ export default function BookAppointment() {
     // eslint-disable-next-line
   }, []);
   return (
-    <Layout>
+    <UserLayout>
       {doctor && (
         <div>
           {/* Doctor Name */}
@@ -150,6 +151,6 @@ export default function BookAppointment() {
           </Row>
         </div>
       )}
-    </Layout>
+    </UserLayout>
   );
 }

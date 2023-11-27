@@ -7,7 +7,8 @@ import {
   hideLoading,
   showLoading,
 } from "../../../Redux/feature/alertSlice.jsx";
-import Layout from "../../../Component/Layout/layout.jsx";
+// import Layout from "../../../Component/Layout/layout.jsx";
+import UserLayout from "../../../Component/Layout/UserLayout.jsx";
 
 function DoctorAppointments() {
   const [appointments, setAppointments] = useState([]);
@@ -121,11 +122,13 @@ function DoctorAppointments() {
     // eslint-disable-next-line
   }, []);
   return (
-    <Layout>
-      <h1 className="page-title"> Patients Appointments</h1>
-      <hr />
-      <Table columns={columns} dataSource={appointments} />
-    </Layout>
+    <UserLayout>
+      <div className="">
+        <h1 className="page-title"> Patients Appointments</h1>
+        <hr />
+        <Table columns={columns} dataSource={appointments} />
+      </div>
+    </UserLayout>
   );
 }
 

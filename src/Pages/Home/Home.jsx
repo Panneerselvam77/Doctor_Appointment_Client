@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
 import axios from "axios";
-import Layout from "../../Component/Layout/layout";
+// import Layout from "../../Component/Layout/layout";
 import { Col, Row } from "antd";
 import DoctorComp from "../../Component/Doctor/DoctorComp";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../Redux/feature/alertSlice.jsx";
+import UserLayout from "../../Component/Layout/UserLayout.jsx";
 
 export default function Home() {
   const [doctors, setDoctors] = useState([]);
@@ -36,17 +37,24 @@ export default function Home() {
     // eslint-disable-next-line
   }, []);
   return (
-    <Layout>
-      <h1 className="page-title">Home Page</h1>
-      <Row gutter={20}>
-        {doctors.map((doctor, index) => (
-          <div key={index} className="doclist pt-2">
-            <Col span={8} xs={24} sm={24} lg={8}>
-              <DoctorComp doctor={doctor} />
-            </Col>
-          </div>
-        ))}
-      </Row>
-    </Layout>
+    <UserLayout>
+      <div className="">
+        <h1 className="page-title d-flex justify-content-center mt-3">
+          Home Page
+        </h1>
+        <hr style={{ width: "80vw" }} />
+        <div>
+          <Row gutter={20}>
+            {doctors.map((doctor, index) => (
+              <div key={index} className="doclist pt-2">
+                <Col span={8} xs={24} sm={24} lg={8}>
+                  <DoctorComp doctor={doctor} />
+                </Col>
+              </div>
+            ))}
+          </Row>
+        </div>
+      </div>
+    </UserLayout>
   );
 }

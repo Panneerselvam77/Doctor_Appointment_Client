@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../../Component/Layout/layout";
+// import Layout from "../../../Component/Layout/layout";
 import DoctorForm from "../../../Component/DoctorForm/DoctorForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import { hideLoading, showLoading } from "../../../Redux/feature/alertSlice";
 import axios from "axios";
 import { message } from "antd";
 import moment from "moment";
+import UserLayout from "../../../Component/Layout/UserLayout";
 
 export default function DoctorProfile() {
   const { user } = useSelector((state) => state.user);
@@ -78,10 +79,14 @@ export default function DoctorProfile() {
   }, []);
 
   return (
-    <Layout>
-      <h1 className="page-title">Doctor Profile</h1>
-      <hr />
-      <DoctorForm onFinish={onFinish} initivalValues={doctor} />
-    </Layout>
+    <UserLayout>
+      <div className=" ">
+        <h1 className="page-title d-flex justify-content-center mt-3">
+          Doctor Profile
+        </h1>
+        <hr style={{ width: "80%" }} />
+        <DoctorForm onFinish={onFinish} initivalValues={doctor} />
+      </div>
+    </UserLayout>
   );
 }

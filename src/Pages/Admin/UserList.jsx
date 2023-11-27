@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../Component/Layout/layout";
+// import Layout from "../../Component/Layout/layout";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../Redux/feature/alertSlice";
 import { Table } from "antd";
 import moment from "moment";
+import UserLayout from "../../Component/Layout/UserLayout";
 
 export default function UserList() {
   const [user, setUsers] = useState();
@@ -61,11 +62,16 @@ export default function UserList() {
       },
     },
   ];
+  // page-header
   return (
-    <Layout>
-      <h1 className="page-header">User List</h1>
-      <hr />
-      <Table columns={columns} dataSource={user} />
-    </Layout>
+    <UserLayout>
+      <div style={{ width: "90%" }}>
+        <h1 className="page-title d-flex justify-content-center mt-3">
+          User List
+        </h1>
+        <hr />
+        <Table columns={columns} dataSource={user} />
+      </div>
+    </UserLayout>
   );
 }

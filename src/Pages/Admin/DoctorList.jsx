@@ -5,6 +5,7 @@ import { hideLoading, showLoading } from "../../Redux/feature/alertSlice";
 import { Table } from "antd";
 import moment from "moment";
 import Layout from "../../Component/Layout/layout";
+import UserLayout from "../../Component/Layout/UserLayout";
 
 export default function DoctorList() {
   const [doctors, setDoctors] = useState();
@@ -111,10 +112,14 @@ export default function DoctorList() {
     },
   ];
   return (
-    <Layout>
-      <h1 className="page-header">Doctors List</h1>
-      <hr />
-      <Table columns={columns} dataSource={doctors} />
-    </Layout>
+    <UserLayout>
+      <div style={{ width: "90%" }}>
+        <h1 className="page-title d-flex justify-content-center mt-3">
+          Doctors List
+        </h1>
+        <hr />
+        <Table columns={columns} dataSource={doctors} />
+      </div>
+    </UserLayout>
   );
 }
