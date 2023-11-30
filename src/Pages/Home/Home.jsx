@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
 import axios from "axios";
-// import Layout from "../../Component/Layout/layout";
 import { Col, Row } from "antd";
 import DoctorComp from "../../Component/Doctor/DoctorComp";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../Redux/feature/alertSlice.jsx";
-import UserLayout from "../../Component/Layout/UserLayout.jsx";
+import Layout from "../../Component/Layout/layout.jsx";
+import { URL } from "../../GlobalUrl.js";
 
 export default function Home() {
   const [doctors, setDoctors] = useState([]);
@@ -15,7 +15,7 @@ export default function Home() {
     try {
       dispatch(showLoading());
       const response = await axios.get(
-        "http://localhost:8070/api/user/get-all-approved-doctors",
+        `${URL}/api/user/get-all-approved-doctors`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -37,7 +37,7 @@ export default function Home() {
     // eslint-disable-next-line
   }, []);
   return (
-    <UserLayout>
+    <Layout>
       <div className="">
         <h1 className="page-title d-flex justify-content-center mt-3">
           Home Page
@@ -55,6 +55,6 @@ export default function Home() {
           </Row>
         </div>
       </div>
-    </UserLayout>
+    </Layout>
   );
 }

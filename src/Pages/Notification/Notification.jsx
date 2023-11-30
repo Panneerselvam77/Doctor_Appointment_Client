@@ -1,13 +1,13 @@
 import React from "react";
 import "./notification.css";
-// import Layout from "../../Component/Layout/layout";
 import { Tabs, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice";
 import axios from "axios";
 import { setUser } from "../../Redux/feature/userSlice";
-import UserLayout from "../../Component/Layout/UserLayout";
+import Layout from "../../Component/Layout/layout";
+import { URL } from "../../GlobalUrl";
 
 export default function Notification() {
   const { user } = useSelector((state) => state.user);
@@ -20,7 +20,7 @@ export default function Notification() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/user/mark-all-notification-as-seen",
+        `${URL}/api/user/mark-all-notification-as-seen`,
         { userId: user._id },
         {
           headers: {
@@ -45,7 +45,7 @@ export default function Notification() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/user/delete-all-notification",
+        `${URL}/api/user/delete-all-notification`,
         { userId: user._id },
         {
           headers: {
@@ -67,7 +67,7 @@ export default function Notification() {
   };
 
   return (
-    <UserLayout>
+    <Layout>
       <div className="notification">
         <h1 className="page-title">Notifications</h1>
         <hr />
@@ -106,6 +106,6 @@ export default function Notification() {
           </Tabs.TabPane>
         </Tabs>
       </div>
-    </UserLayout>
+    </Layout>
   );
 }

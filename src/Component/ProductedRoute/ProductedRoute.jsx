@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUser } from "../../Redux/feature/userSlice.jsx";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice.jsx";
+import { URL } from "../../GlobalUrl.js";
 
 export default function ProductedRoute(props) {
   const { users } = useSelector((state) => state.user);
@@ -14,7 +15,7 @@ export default function ProductedRoute(props) {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/user/get-user-info-by-id",
+        `${URL}/api/user/get-user-info-by-id`,
         { token: localStorage.getItem("token") },
         {
           headers: {

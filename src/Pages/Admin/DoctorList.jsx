@@ -5,7 +5,7 @@ import { hideLoading, showLoading } from "../../Redux/feature/alertSlice";
 import { Table } from "antd";
 import moment from "moment";
 import Layout from "../../Component/Layout/layout";
-import UserLayout from "../../Component/Layout/UserLayout";
+import { URL } from "../../GlobalUrl";
 
 export default function DoctorList() {
   const [doctors, setDoctors] = useState();
@@ -15,14 +15,11 @@ export default function DoctorList() {
   const getDoctorsData = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.get(
-        "http://localhost:8070/api/admin/get-all-doctors",
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await axios.get(`${URL}/api/admin/get-all-doctors`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       dispatch(hideLoading());
       if (response.data.success) {
         setDoctors(response.data.data);
@@ -38,7 +35,7 @@ export default function DoctorList() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/admin/change-doctor-account-status",
+        `${URL}/api/admin/change-doctor-account-status`,
         { doctorId: record._id, userId: record.userId, status: status },
         {
           headers: {
@@ -112,7 +109,7 @@ export default function DoctorList() {
     },
   ];
   return (
-    <UserLayout>
+    <Layout>
       <div style={{ width: "90%" }}>
         <h1 className="page-title d-flex justify-content-center mt-3">
           Doctors List
@@ -120,6 +117,6 @@ export default function DoctorList() {
         <hr />
         <Table columns={columns} dataSource={doctors} />
       </div>
-    </UserLayout>
+    </Layout>
   );
 }

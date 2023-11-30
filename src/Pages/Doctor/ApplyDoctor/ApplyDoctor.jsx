@@ -1,12 +1,12 @@
 import React from "react";
 import "./applyDoctor.css";
-// import Layout from "../../../Component/Layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../../../Redux/feature/alertSlice";
 import DoctorForm from "../../../Component/DoctorForm/DoctorForm.jsx";
 import { message } from "antd";
 import axios from "axios";
-import UserLayout from "../../../Component/Layout/UserLayout.jsx";
+import Layout from "../../../Component/Layout/layout.jsx";
+import { URL } from "../../../GlobalUrl.js";
 
 export default function ApplyDoctor() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function ApplyDoctor() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/user/apply-doctor-account",
+        `${URL}/api/user/apply-doctor-account`,
         {
           ...value,
           userId: user._id,
@@ -45,7 +45,7 @@ export default function ApplyDoctor() {
   };
 
   return (
-    <UserLayout>
+    <Layout>
       <div style={{ width: "90%" }}>
         <h1 className="page-title d-flex justify-content-center mt-3">
           Apply Doctor
@@ -53,6 +53,6 @@ export default function ApplyDoctor() {
         <hr />
         <DoctorForm onFinish={onFinish} />
       </div>
-    </UserLayout>
+    </Layout>
   );
 }

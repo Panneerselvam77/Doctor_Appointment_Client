@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-// import Layout from "../../Component/Layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice";
 import axios from "axios";
 import { Button, Col, DatePicker, Row, TimePicker, message } from "antd";
 import moment from "moment";
-import UserLayout from "../../Component/Layout/UserLayout";
+import Layout from "../../Component/Layout/layout";
+import { URL } from "../../GlobalUrl";
 
 export default function BookAppointment() {
   // eslint-disable-next-line
@@ -29,7 +29,7 @@ export default function BookAppointment() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/doctor/get-doctor-info-by-id",
+        `${URL}/api/doctor/get-doctor-info-by-id`,
         {
           doctorId: params.doctorId,
         },
@@ -55,7 +55,7 @@ export default function BookAppointment() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/user/book-appointment",
+        `${URL}/api/user/book-appointment`,
         {
           doctorId: params.doctorId,
           userId: user._id,
@@ -87,7 +87,7 @@ export default function BookAppointment() {
     // eslint-disable-next-line
   }, []);
   return (
-    <UserLayout>
+    <Layout>
       {doctor && (
         <div>
           {/* Doctor Name */}
@@ -151,6 +151,6 @@ export default function BookAppointment() {
           </Row>
         </div>
       )}
-    </UserLayout>
+    </Layout>
   );
 }

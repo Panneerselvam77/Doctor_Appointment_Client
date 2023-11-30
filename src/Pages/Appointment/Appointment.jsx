@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-// import Layout from "../../Component/Layout/layout.jsx";
 import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../Redux/feature/alertSlice.jsx";
 import axios from "axios";
 import moment from "moment";
 import { Table } from "antd";
 import { useNavigate } from "react-router-dom";
-import UserLayout from "../../Component/Layout/UserLayout.jsx";
+import Layout from "../../Component/Layout/layout.jsx";
+import { URL } from "../../GlobalUrl.js";
 
 export default function DoctorAppointment() {
   const [appointments, setAppointmnets] = useState([]);
@@ -18,7 +18,7 @@ export default function DoctorAppointment() {
     try {
       dispatch(showLoading());
       const response = await axios.get(
-        "http://localhost:8070/api/user/get-appointments-by-user-id",
+        `${URL}/api/user/get-appointments-by-user-id`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -81,7 +81,7 @@ export default function DoctorAppointment() {
     // eslint-disable-next-line
   }, []);
   return (
-    <UserLayout>
+    <Layout>
       <div className="" style={{ width: "90%" }}>
         <h1 className="page-title d-flex justify-content-center mt-3">
           {" "}
@@ -90,6 +90,6 @@ export default function DoctorAppointment() {
         <hr />
         <Table columns={columns} dataSource={appointments} />
       </div>
-    </UserLayout>
+    </Layout>
   );
 }

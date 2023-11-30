@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import Layout from "../../../Component/Layout/layout";
+import Layout from "../../../Component/Layout/layout";
 import DoctorForm from "../../../Component/DoctorForm/DoctorForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,7 +7,7 @@ import { hideLoading, showLoading } from "../../../Redux/feature/alertSlice";
 import axios from "axios";
 import { message } from "antd";
 import moment from "moment";
-import UserLayout from "../../../Component/Layout/UserLayout";
+import { URL } from "../../../GlobalUrl";
 
 export default function DoctorProfile() {
   const { user } = useSelector((state) => state.user);
@@ -20,7 +20,7 @@ export default function DoctorProfile() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/doctor/update-doctor-profile",
+        `${URL}/api/doctor/update-doctor-profile`,
         {
           ...values,
           userId: user._id,
@@ -52,7 +52,7 @@ export default function DoctorProfile() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:8070/api/doctor/get-doctor-info-by-user-id",
+        `${URL}/api/doctor/get-doctor-info-by-user-id`,
         {
           userId: params.userId,
         },
@@ -79,7 +79,7 @@ export default function DoctorProfile() {
   }, []);
 
   return (
-    <UserLayout>
+    <Layout>
       <div className=" ">
         <h1 className="page-title d-flex justify-content-center mt-3">
           Doctor Profile
@@ -87,6 +87,6 @@ export default function DoctorProfile() {
         <hr style={{ width: "80%" }} />
         <DoctorForm onFinish={onFinish} initivalValues={doctor} />
       </div>
-    </UserLayout>
+    </Layout>
   );
 }

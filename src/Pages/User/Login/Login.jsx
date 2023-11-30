@@ -10,6 +10,7 @@ import { message } from "antd";
 import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../../Redux/feature/alertSlice";
 import { TextField } from "@mui/material";
+import { URL } from "../../../GlobalUrl";
 
 //  Login Credential Validation Schema
 const loginValidationSchema = yup.object({
@@ -27,10 +28,7 @@ export default function Login() {
       onSubmit: async (values) => {
         try {
           dispatch(showLoading());
-          const response = await axios.post(
-            `http://localhost:8070/api/user/login`,
-            values
-          );
+          const response = await axios.post(`${URL}/api/user/login`, values);
           dispatch(hideLoading());
           if (response.data) {
             message.success("Signed In Successfull");

@@ -8,6 +8,7 @@ import axios from "axios";
 import { message } from "antd";
 import "./emailverify.css";
 import { TextField } from "@mui/material";
+import { URL } from "../../../GlobalUrl";
 
 const loginValidationSchema = yup.object({
   email: yup.string().required("Please provide email id"),
@@ -23,7 +24,7 @@ export default function EmailVerify() {
       onSubmit: async (values) => {
         try {
           const response = await axios.post(
-            `http://localhost:8070/api/user/otp-generating`,
+            `${URL}/api/user/otp-generating`,
             values
           );
 

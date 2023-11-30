@@ -7,8 +7,8 @@ import {
   hideLoading,
   showLoading,
 } from "../../../Redux/feature/alertSlice.jsx";
-// import Layout from "../../../Component/Layout/layout.jsx";
-import UserLayout from "../../../Component/Layout/UserLayout.jsx";
+import Layout from "../../../Component/Layout/layout.jsx";
+import { URL } from "../../../GlobalUrl.js";
 
 function DoctorAppointments() {
   const [appointments, setAppointments] = useState([]);
@@ -19,7 +19,7 @@ function DoctorAppointments() {
     try {
       dispatch(showLoading());
       const resposne = await axios.get(
-        "http://localhost:8070/api/doctor/get-appointments-by-doctor-id",
+        `${URL}/api/doctor/get-appointments-by-doctor-id`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -40,7 +40,7 @@ function DoctorAppointments() {
     try {
       dispatch(showLoading());
       const resposne = await axios.post(
-        "http://localhost:8070/api/doctor/change-appointment-status",
+        `${URL}/api/doctor/change-appointment-status`,
         { appointmentId: record._id, status: status },
         {
           headers: {
@@ -122,13 +122,13 @@ function DoctorAppointments() {
     // eslint-disable-next-line
   }, []);
   return (
-    <UserLayout>
+    <Layout>
       <div className="">
         <h1 className="page-title"> Patients Appointments</h1>
         <hr />
         <Table columns={columns} dataSource={appointments} />
       </div>
-    </UserLayout>
+    </Layout>
   );
 }
 

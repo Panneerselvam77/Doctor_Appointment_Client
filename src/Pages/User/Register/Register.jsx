@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../../Redux/feature/alertSlice";
 import { message } from "antd";
 import { TextField } from "@mui/material";
+import { URL } from "../../../GlobalUrl";
 
 // Validation Schema for Inputs
 const loginValidationSchema = yup.object({
@@ -30,10 +31,7 @@ export default function Register() {
         // console.log(values);
         try {
           dispatch(showLoading());
-          const response = await axios.post(
-            `http://localhost:8070/api/user/register`,
-            values
-          );
+          const response = await axios.post(`${URL}/api/user/register`, values);
           dispatch(hideLoading());
           if (response.data) {
             message.success(response.data.message);
